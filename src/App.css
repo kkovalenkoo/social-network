@@ -8,24 +8,3 @@
 
     width: 1600px;
 }
-
-.header {
-    grid-area: header;
-    background-color: aliceblue;
-}
-
-.header img {
-    height: 50px;
-    width: 50px;
-}
-
-.navbar {
-    color: white;
-    grid-area: nav;
-    background-color: #434a4e;
-}
-
-.content {
-    grid-area: content;
-    background-color: #68b768;
-}

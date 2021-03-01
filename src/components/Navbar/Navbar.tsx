@@ -5,20 +5,21 @@ import s from './Navbar.module.css';
 export function Navbar() {
     return (
         <nav className={s.navbar}>
-            <div>
-                <NavLink to='/profile'>Profile</NavLink>
+            <div className={s.item}>
+                <NavLink to='/profile' activeClassName={s.active}>Profile</NavLink>
+                {/*по умоланию у NavLink есть класс active, но т.к. используется module.css, то activeClassName мы устанавливаем свой active*/}
             </div>
-            <div>
-                <NavLink to='/dialogs'>Messages</NavLink>
+            <div className={s.item}>
+                <NavLink to='/dialogs' activeClassName={s.active}>Messages</NavLink>
             </div>
-            <div>
-                <NavLink to='/news'>News</NavLink>
+            <div className={s.item}>
+                <NavLink to='/news' activeClassName={s.active}>News</NavLink>
             </div>
-            <div>
-                <NavLink to='/music'>Music</NavLink>
+            <div className={s.item}>
+                <NavLink to='/music' activeClassName={s.active}>Music</NavLink>
             </div>
-            <div>
-                <NavLink to='/settings'>Settings</NavLink>
+            <div className={s.item}>
+                <NavLink to='/settings' activeClassName={s.active}>Settings</NavLink>
             </div>
         </nav>
     );

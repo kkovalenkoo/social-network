@@ -1,5 +1,15 @@
 .navbar {
-    color: white;
     grid-area: nav;
     background-color: #434a4e;
+    padding: 20px;
+}
+
+.item a {
+    color: white;
+    text-decoration: none;
+}
+
+.item a.active {
+    color: orange;
+
 }

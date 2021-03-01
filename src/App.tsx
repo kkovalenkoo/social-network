@@ -13,8 +13,8 @@ export function App() {
                 <Header/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
-                    <Route path='/profile' render={Profile}/>
-                    <Route path='/dialogs' render={Dialogs}/>
+                    <Route exact path='/profile' render={Profile}/>
+                    <Route exact path='/dialogs' render={Dialogs}/>
                 </div>
             </div>
         </BrowserRouter>

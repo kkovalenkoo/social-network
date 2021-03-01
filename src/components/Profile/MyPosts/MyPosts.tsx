@@ -1,13 +1,18 @@
 import React from 'react';
 import {Post} from './Post/Post';
+import s from './MyPosts.module.css'
 
 export function MyPosts() {
     return (
         <div>
-            <div>
-                <div>My posts</div>
-                <textarea></textarea>
-                <button>Add Post</button>
+            <div className={s.myPostsBlock}>
+                <h3>My posts</h3>
+                <div>
+                    <textarea></textarea>
+                </div>
+                <div>
+                    <button>Add Post</button>
+                </div>
             </div>
             <Post avatar={'https://ss.sport-express.ru/userfiles/materials/156/1564657/large.jpg'}
                   post={`It's my first post`}

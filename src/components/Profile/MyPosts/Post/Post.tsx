@@ -9,7 +9,7 @@ type PostPropsType = {
 
 export function Post(props: PostPropsType) {
     return (
-        <div>
+        <div className={s.postBlock}>
             <img className={s.avatar}
                  src={props.avatar}
                  alt="avatar"/>

@@ -14,7 +14,7 @@ export function MyPosts() {
                   like={10}
             />
             <Post
-                avatar={`https://lh3.googleusercontent.com/proxy/tqTjYOdz3WzYANtoseR7B3CKnv9FPAW2IqCnfLJaPvcdofqbX24HpnCLAVv4VndBYRHgpDgLMiUKFBx3bmdY4h4NKm5viOpQshrMuZmEMZHWRF5TsPRLpv1F93ZeIs_Uwf0R7NsNDQm-`}
+                avatar={`https://lh3.googleusercontent.com/proxy/fSdpiD-cVtH9rk236jSYbYZLVh5llddS51XlZtd6ETYCqWCf4RfGRRn43_uVYT2e866h4ulhYQ7HI54TclVpr2X6K2_A5-bJ--eB4mA7ZK-Q2W_OXTZ_cjp13BJRVQ`}
                 post={`Hello, how are you`}
                 like={5}
             />

@@ -8,3 +8,9 @@
 
     width: 1600px;
 }
+
+.app-wrapper-content {
+    grid-area: content;
+    background-color: #68b768;
+}
+

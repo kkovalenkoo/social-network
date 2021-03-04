@@ -1,10 +1,10 @@
+import {DialogsDataType} from '../../state/state';
 import s from './Dialogs.module.css';
 import {Message} from './Message/Message';
-import {DialogsType} from '../../index';
 import {User} from './User/User';
 
 type DialogsPropsType = {
-    dialogsData: DialogsType
+    dialogsData: DialogsDataType
 }
 
 export function Dialogs(props: DialogsPropsType) {

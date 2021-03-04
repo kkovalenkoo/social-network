@@ -5,11 +5,10 @@ import {Header} from './components/Header/Header';
 import {Dialogs} from './components/Dialogs/Dialogs';
 import {Profile} from './components/Profile/Profile';
 import {BrowserRouter, Route} from 'react-router-dom';
-import {DialogsType, postDataType} from './index';
+import {StateType} from './state/state';
 
 type AppPropsType = {
-    dialogsData: DialogsType
-    postsData: Array<postDataType>
+    state: StateType
 }
 
 export function App(props: AppPropsType) {
@@ -19,8 +18,8 @@ export function App(props: AppPropsType) {
                 <Header/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
-                    <Route exact path='/profile' render={() => <Profile postsData={props.postsData}/>}/>
-                    <Route exact path='/dialogs' render={() => <Dialogs dialogsData={props.dialogsData}/>}/>
+                    <Route exact path='/profile' render={() => <Profile postsData={props.state.postsData}/>}/>
+                    <Route exact path='/dialogs' render={() => <Dialogs dialogsData={props.state.dialogsData}/>}/>
                 </div>
             </div>
         </BrowserRouter>

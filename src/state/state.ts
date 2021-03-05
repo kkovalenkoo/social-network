@@ -1,3 +1,5 @@
+import {rerenderEntireTree} from '../render';
+
 export type UserType = {
     id: number
     name: string
@@ -10,7 +12,7 @@ export type DialogsDataType = {
     users: Array<UserType>
     messages: Array<MessagesType>
 }
-export type postDataType = {
+export type PostDataType = {
     id: number
     avatar: string
     post: string
@@ -18,7 +20,8 @@ export type postDataType = {
 }
 export type StateType = {
     dialogsData: DialogsDataType
-    postsData: Array<postDataType>
+    postsData: Array<PostDataType>
+    newTextForPost: string
 }
 
 export const state: StateType = {
@@ -47,5 +50,18 @@ export const state: StateType = {
             post: 'Hello, how are you',
             like: 5
         }
-    ]
+    ],
+    newTextForPost: ''
+};
+
+export function addPost(postText: string) {
+    const newPost: PostDataType = {id: 3, avatar: '', post: postText, like: 0};
+    state.postsData.push(newPost);
+    rerenderEntireTree(state);
+    state.newTextForPost = '';
+}
+
+export function inputNewTextForPost(newTextForPost: string) {
+    state.newTextForPost = newTextForPost;
+    rerenderEntireTree(state);
 }

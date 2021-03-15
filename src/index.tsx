@@ -1,9 +1,21 @@
 import React from 'react';
 import './index.css';
-import {rerenderEntireTree} from './render';
-import {state} from './state/state';
+import {addPost, inputNewTextForPost, state, subscribe} from './state/state';
+import ReactDOM from 'react-dom';
+import {App} from './App';
+import {BrowserRouter} from 'react-router-dom';
 
-rerenderEntireTree(state);
+function rerenderEntireTree() {
+    ReactDOM.render(
+        <BrowserRouter>
+            <App state={state} addPost={addPost} inputNewTextForPost={inputNewTextForPost}/>
+        </BrowserRouter>
+        , document.getElementById('root'));
+}
+
+rerenderEntireTree();
+
+subscribe(rerenderEntireTree)
 
 
 

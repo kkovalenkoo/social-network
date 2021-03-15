@@ -1,4 +1,4 @@
-import {rerenderEntireTree} from '../render';
+let rerenderEntireTree = () => {};
 
 export type UserType = {
     id: number
@@ -58,10 +58,14 @@ export function addPost() {
     const newPost: PostDataType = {id: 3, avatar: '', post: state.newTextForPost, like: 0};
     state.postsData.push(newPost);
     state.newTextForPost = '';
-    rerenderEntireTree(state);
+    rerenderEntireTree();
 }
 
 export function inputNewTextForPost(newTextForPost: string) {
     state.newTextForPost = newTextForPost;
-    rerenderEntireTree(state);
+    rerenderEntireTree();
+}
+
+export function subscribe(observer: () => void) {
+    rerenderEntireTree = observer;
 }

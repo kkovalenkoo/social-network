@@ -5,7 +5,7 @@ import {PostDataType} from '../../../state/state';
 
 type MyPostsPropsType = {
     postsData: Array<PostDataType>
-    addPost: (postText: string) => void
+    addPost: () => void
     inputNewTextForPost: (newTextForPost: string) => void
     newTextForPost: string
 }
@@ -16,11 +16,12 @@ export function MyPosts(props: MyPostsPropsType) {
         props.inputNewTextForPost(e.currentTarget.value);
     };
     const onAddPost = () => {
-        props.addPost(props.newTextForPost);
+        props.addPost();
     };
-    const onKeyPress = (e: KeyboardEvent<HTMLButtonElement>) => {
-        if (e.key === 'Enter') {
-            props.addPost(props.newTextForPost);
+    const onKeyPress = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+        debugger
+        if (e.ctrlKey && e.code === 'Enter') {
+            props.addPost();
         }
     };
 
@@ -31,11 +32,11 @@ export function MyPosts(props: MyPostsPropsType) {
                 <div>
                 <textarea
                     value={props.newTextForPost}
-                    onChange={onNewTextForPost}>
-                </textarea>
+                    onChange={onNewTextForPost}
+                    onKeyPress={onKeyPress}/>
                 </div>
                 <div>
-                    <button onClick={onAddPost} onKeyPress={onKeyPress}>Add Post</button>
+                    <button onClick={onAddPost}>Add Post</button>
                 </div>
             </div>
             <div>

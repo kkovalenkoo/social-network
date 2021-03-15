@@ -54,11 +54,11 @@ export const state: StateType = {
     newTextForPost: ''
 };
 
-export function addPost(postText: string) {
-    const newPost: PostDataType = {id: 3, avatar: '', post: postText, like: 0};
+export function addPost() {
+    const newPost: PostDataType = {id: 3, avatar: '', post: state.newTextForPost, like: 0};
     state.postsData.push(newPost);
-    rerenderEntireTree(state);
     state.newTextForPost = '';
+    rerenderEntireTree(state);
 }
 
 export function inputNewTextForPost(newTextForPost: string) {

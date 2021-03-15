@@ -5,7 +5,7 @@ import {ProfileInfo} from './ProfileInfo/ProfileInfo';
 
 type ProfilePropsType = {
     postsData: Array<PostDataType>
-    addPost: (postText: string) => void
+    addPost: () => void
     inputNewTextForPost: (newTextForPost: string) => void
     newTextForPost: string
 }

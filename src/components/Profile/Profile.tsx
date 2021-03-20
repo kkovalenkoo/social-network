@@ -1,12 +1,11 @@
 import React from 'react';
-import {PostDataType} from '../../state/state';
+import {AllActions, PostDataType} from '../../state/state';
 import {MyPosts} from './MyPosts/MyPosts';
 import {ProfileInfo} from './ProfileInfo/ProfileInfo';
 
 type ProfilePropsType = {
     postsData: Array<PostDataType>
-    addPost: () => void
-    inputNewTextForPost: (newTextForPost: string) => void
+    dispatch: (action: AllActions) => void
     newTextForPost: string
 }
 
@@ -17,8 +16,7 @@ export function Profile(props: ProfilePropsType) {
         <div>
             <ProfileInfo/>
             <MyPosts postsData={props.postsData}
-                     addPost={props.addPost}
-                     inputNewTextForPost={props.inputNewTextForPost}
+                     dispatch={props.dispatch}
                      newTextForPost={props.newTextForPost}/>
         </div>
     );

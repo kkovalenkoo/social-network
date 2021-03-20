@@ -1,8 +1,8 @@
-export type UserType = {
+type UserType = {
     id: number
     name: string
 }
-export type MessagesType = {
+type MessagesType = {
     id: number
     message: string
 }
@@ -21,8 +21,23 @@ export type StateType = {
     postsData: Array<PostDataType>
     newTextForPost: string
 }
+export type AllActions = AddPostActionType | InputNewTextForPostActionType
+type AddPostActionType = {
+    type: 'ADD-POST'
+}
+type InputNewTextForPostActionType = {
+    type: 'INPUT-NEW-TEXT-FOR-POST'
+    newText: string
+}
+export type StoreType = {
+    _state: StateType
+    getState: () => StateType
+    rerenderEntireTree: () => void
+    subscribe: (observer: () => void) => void
+    dispatch: (action: AllActions) => void
+}
 
-export const store = {
+export const store: StoreType = {
     _state: {
         dialogsData: {
             users: [
@@ -55,18 +70,21 @@ export const store = {
     getState() {
         return this._state;
     },
-    rerenderEntireTree() {},
-    addPost() {
-        const newPost: PostDataType = {id: 3, avatar: '', post: this._state.newTextForPost, like: 0};
-        this._state.postsData.push(newPost);
-        this._state.newTextForPost = '';
-        this.rerenderEntireTree();
+    rerenderEntireTree() {
     },
-    inputNewTextForPost(newTextForPost: string) {
-        this._state.newTextForPost = newTextForPost;
-        this.rerenderEntireTree();
-    },
-    subscribe(observer: () => void) {
+    subscribe(observer) {
         this.rerenderEntireTree = observer;
+    },
+    dispatch(action) {
+        if (action.type === 'ADD-POST'){
+            const newPost: PostDataType = {id: 3, avatar: '', post: this._state.newTextForPost, like: 0};
+            this._state.postsData.push(newPost);
+            this._state.newTextForPost = '';
+            this.rerenderEntireTree();
+        }
+        else if (action.type === 'INPUT-NEW-TEXT-FOR-POST'){
+            this._state.newTextForPost = action.newText;
+            this.rerenderEntireTree();
+        }
     }
 };

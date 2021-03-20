@@ -5,12 +5,11 @@ import {Header} from './components/Header/Header';
 import {Dialogs} from './components/Dialogs/Dialogs';
 import {Profile} from './components/Profile/Profile';
 import {Route} from 'react-router-dom';
-import {StateType} from './state/state';
+import {AllActions, StateType} from './state/state';
 
 type AppPropsType = {
     state: StateType
-    addPost: () => void
-    inputNewTextForPost: (newTextForPost: string) => void
+    dispatch: (action: AllActions) => void
 }
 
 export function App(props: AppPropsType) {
@@ -20,8 +19,7 @@ export function App(props: AppPropsType) {
             <Navbar/>
             <div className='app-wrapper-content'>
                 <Route exact path='/profile' render={() => <Profile postsData={props.state.postsData}
-                                                                    addPost={props.addPost}
-                                                                    inputNewTextForPost={props.inputNewTextForPost}
+                                                                    dispatch={props.dispatch}
                                                                     newTextForPost={props.state.newTextForPost}/>}
                 />
                 <Route exact path='/dialogs' render={() => <Dialogs dialogsData={props.state.dialogsData}/>}/>

@@ -21,14 +21,7 @@ export type StateType = {
     postsData: Array<PostDataType>
     newTextForPost: string
 }
-export type AllActions = AddPostActionType | InputNewTextForPostActionType
-type AddPostActionType = {
-    type: 'ADD-POST'
-}
-type InputNewTextForPostActionType = {
-    type: 'INPUT-NEW-TEXT-FOR-POST'
-    newText: string
-}
+export type AllActions = ReturnType<typeof addPostAC> | ReturnType<typeof InputNewTextForPostAC>
 export type StoreType = {
     _state: StateType
     getState: () => StateType
@@ -88,3 +81,11 @@ export const store: StoreType = {
         }
     }
 };
+
+export const addPostAC = () => ({
+    type: 'ADD-POST'
+} as const)
+export const InputNewTextForPostAC = (newText: string) => ({
+    type: 'INPUT-NEW-TEXT-FOR-POST',
+    newText: newText
+} as const)

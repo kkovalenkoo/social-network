@@ -18,11 +18,13 @@ export function App(props: AppPropsType) {
             <Header/>
             <Navbar/>
             <div className='app-wrapper-content'>
-                <Route exact path='/profile' render={() => <Profile postsData={props.state.postsData}
+                <Route exact path='/profile' render={() => <Profile postsData={props.state.profileData.postsData}
                                                                     dispatch={props.dispatch}
-                                                                    newTextForPost={props.state.newTextForPost}/>}
+                                                                    newTextForPost={props.state.profileData.newTextForPost}/>}
                 />
-                <Route exact path='/dialogs' render={() => <Dialogs dialogsData={props.state.dialogsData}/>}/>
+                <Route exact path='/dialogs' render={() => <Dialogs dialogsData={props.state.dialogsData}
+                                                                    newMessageText={props.state.dialogsData.newMessageText}
+                                                                    dispatch={props.dispatch}/>}/>
             </div>
         </div>
     );

@@ -1,7 +1,8 @@
 import React, {ChangeEvent, KeyboardEvent} from 'react';
 import {Post} from './Post/Post';
 import s from './MyPosts.module.css';
-import {addPostAC, AllActions, InputNewTextForPostAC, PostDataType} from '../../../state/state';
+import {AllActions, PostDataType} from '../../../state/state';
+import {addPostAC, inputNewTextForPostAC} from '../../../state/profileReducer';
 
 type MyPostsPropsType = {
     postsData: Array<PostDataType>
@@ -12,7 +13,7 @@ type MyPostsPropsType = {
 export function MyPosts(props: MyPostsPropsType) {
 
     const onNewTextForPost = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch(InputNewTextForPostAC(e.currentTarget.value));
+        props.dispatch(inputNewTextForPostAC(e.currentTarget.value));
     };
     const onAddPost = () => {
         props.dispatch(addPostAC());

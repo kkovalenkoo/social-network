@@ -1,3 +1,6 @@
+import {addPostAC, inputNewTextForPostAC, profileReducer} from './profileReducer';
+import {addMessageAC, dialogsReducer, newMessageTextAC} from './dialogsReducer';
+
 type UserType = {
     id: number
     name: string
@@ -9,6 +12,11 @@ type MessagesType = {
 export type DialogsDataType = {
     users: Array<UserType>
     messages: Array<MessagesType>
+    newMessageText: string
+}
+export type ProfileDataType = {
+    postsData: Array<PostDataType>,
+    newTextForPost: string
 }
 export type PostDataType = {
     id: number
@@ -18,10 +26,13 @@ export type PostDataType = {
 }
 export type StateType = {
     dialogsData: DialogsDataType
-    postsData: Array<PostDataType>
-    newTextForPost: string
+    profileData: ProfileDataType
 }
-export type AllActions = ReturnType<typeof addPostAC> | ReturnType<typeof InputNewTextForPostAC>
+export type AllActions =
+    ReturnType<typeof addPostAC> |
+    ReturnType<typeof inputNewTextForPostAC> |
+    ReturnType<typeof newMessageTextAC> |
+    ReturnType<typeof addMessageAC>
 export type StoreType = {
     _state: StateType
     getState: () => StateType
@@ -42,23 +53,27 @@ export const store: StoreType = {
                 {id: 1, message: 'Hello'},
                 {id: 2, message: 'Hi'},
                 {id: 3, message: 'Yo'}
-            ]
+            ],
+            newMessageText: ''
         },
-        postsData: [
-            {
-                id: 1,
-                avatar: 'https://ss.sport-express.ru/userfiles/materials/156/1564657/large.jpg',
-                post: `It's my first post`,
-                like: 10
-            },
-            {
-                id: 2,
-                avatar: `https://ss.sport-express.ru/userfiles/materials/156/1564657/large.jpg`,
-                post: 'Hello, how are you',
-                like: 5
-            }
-        ],
-        newTextForPost: ''
+        profileData: {
+            postsData: [
+                {
+                    id: 1,
+                    avatar: 'https://ss.sport-express.ru/userfiles/materials/156/1564657/large.jpg',
+                    post: `It's my first post`,
+                    like: 10
+                },
+                {
+                    id: 2,
+                    avatar: `https://ss.sport-express.ru/userfiles/materials/156/1564657/large.jpg`,
+                    post: 'Hello, how are you',
+                    like: 5
+                }
+            ],
+            newTextForPost: ''
+        }
+
     },
     getState() {
         return this._state;
@@ -69,23 +84,8 @@ export const store: StoreType = {
         this.rerenderEntireTree = observer;
     },
     dispatch(action) {
-        if (action.type === 'ADD-POST'){
-            const newPost: PostDataType = {id: 3, avatar: '', post: this._state.newTextForPost, like: 0};
-            this._state.postsData.push(newPost);
-            this._state.newTextForPost = '';
-            this.rerenderEntireTree();
-        }
-        else if (action.type === 'INPUT-NEW-TEXT-FOR-POST'){
-            this._state.newTextForPost = action.newText;
-            this.rerenderEntireTree();
-        }
+        this._state.profileData = profileReducer(this._state.profileData, action);
+        this._state.dialogsData = dialogsReducer(this._state.dialogsData, action);
+        this.rerenderEntireTree();
     }
 };
-
-export const addPostAC = () => ({
-    type: 'ADD-POST'
-} as const)
-export const InputNewTextForPostAC = (newText: string) => ({
-    type: 'INPUT-NEW-TEXT-FOR-POST',
-    newText: newText
-} as const)

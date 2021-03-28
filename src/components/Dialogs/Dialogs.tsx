@@ -1,14 +1,13 @@
-import {AllActions, DialogsDataType} from '../../state/state';
+import {AllActionCreators} from '../../redux/redux-store';
 import s from './Dialogs.module.css';
 import {Message} from './Message/Message';
 import {User} from './User/User';
 import {ChangeEvent} from 'react';
-import {addMessageAC, newMessageTextAC} from '../../state/dialogsReducer';
+import {addMessageAC, InitialStateDialogsDataType, newMessageTextAC} from '../../redux/dialogsReducer';
 
 type DialogsPropsType = {
-    dialogsData: DialogsDataType
-    newMessageText: string
-    dispatch: (action: AllActions) => void
+    dialogsData: InitialStateDialogsDataType
+    dispatch: (action: AllActionCreators) => void
 }
 
 export function Dialogs(props: DialogsPropsType) {
@@ -31,7 +30,7 @@ export function Dialogs(props: DialogsPropsType) {
             <div className={s.messages}>
                 {mapMessages}
                 <div>
-                    <textarea value={props.newMessageText} onChange={onChangeTextMessage}/>
+                    <textarea value={props.dialogsData.newMessageText} onChange={onChangeTextMessage}/>
                 </div>
                 <div>
                     <button onClick={onSendClick}>Send</button>

@@ -1,12 +1,12 @@
 import React from 'react';
-import {AllActions, PostDataType} from '../../state/state';
+import {AllActionCreators} from '../../redux/redux-store';
 import {MyPosts} from './MyPosts/MyPosts';
 import {ProfileInfo} from './ProfileInfo/ProfileInfo';
+import {InitialStateProfileReducerType} from '../../redux/profileReducer';
 
 type ProfilePropsType = {
-    postsData: Array<PostDataType>
-    dispatch: (action: AllActions) => void
-    newTextForPost: string
+    profileData: InitialStateProfileReducerType
+    dispatch: (action: AllActionCreators) => void
 }
 
 export function Profile(props: ProfilePropsType) {
@@ -15,9 +15,8 @@ export function Profile(props: ProfilePropsType) {
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts postsData={props.postsData}
-                     dispatch={props.dispatch}
-                     newTextForPost={props.newTextForPost}/>
+            <MyPosts profileData={props.profileData}
+                     dispatch={props.dispatch}/>
         </div>
     );
 }

@@ -1,13 +1,12 @@
 import React, {ChangeEvent, KeyboardEvent} from 'react';
 import {Post} from './Post/Post';
 import s from './MyPosts.module.css';
-import {AllActions, PostDataType} from '../../../state/state';
-import {addPostAC, inputNewTextForPostAC} from '../../../state/profileReducer';
+import {AllActionCreators} from '../../../redux/redux-store';
+import {addPostAC, InitialStateProfileReducerType, inputNewTextForPostAC} from '../../../redux/profileReducer';
 
 type MyPostsPropsType = {
-    postsData: Array<PostDataType>
-    dispatch: (action: AllActions) => void
-    newTextForPost: string
+    profileData: InitialStateProfileReducerType
+    dispatch: (action: AllActionCreators) => void
 }
 
 export function MyPosts(props: MyPostsPropsType) {
@@ -24,6 +23,10 @@ export function MyPosts(props: MyPostsPropsType) {
             props.dispatch(addPostAC());
         }
     };
+    const mapProfileData = props.profileData.postsData.map(p => <Post key={p.id}
+                                                                      post={p.post}
+                                                                      like={p.like}
+                                                                      avatar={p.avatar}/>);
 
     return (
         <div>
@@ -31,7 +34,7 @@ export function MyPosts(props: MyPostsPropsType) {
                 <h3>My posts</h3>
                 <div>
                 <textarea
-                    value={props.newTextForPost}
+                    value={props.profileData.newTextForPost}
                     onChange={onNewTextForPost}
                     onKeyPress={onKeyPress}/>
                 </div>
@@ -40,7 +43,7 @@ export function MyPosts(props: MyPostsPropsType) {
                 </div>
             </div>
             <div>
-                {props.postsData.map(p => <Post key={p.id} post={p.post} like={p.like} avatar={p.avatar}/>)}
+                {mapProfileData}
             </div>
         </div>
     );

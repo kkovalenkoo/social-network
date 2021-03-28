@@ -1,6 +1,7 @@
 import {addPostAC, inputNewTextForPostAC, profileReducer} from './profileReducer';
 import {addMessageAC, dialogsReducer, newMessageTextAC} from './dialogsReducer';
 
+/*
 type UserType = {
     id: number
     name: string
@@ -56,7 +57,8 @@ export const store: StoreType = {
             ],
             newMessageText: ''
         },
-        profileData: {
+        profileData:
+        {
             postsData: [
                 {
                     id: 1,
@@ -88,4 +90,4 @@ export const store: StoreType = {
         this._state.dialogsData = dialogsReducer(this._state.dialogsData, action);
         this.rerenderEntireTree();
     }
-};
+};*/

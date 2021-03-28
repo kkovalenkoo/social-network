@@ -1,6 +1,23 @@
-import {AllActions, DialogsDataType} from './state';
+export type DialogsReducerAC = ReturnType<typeof newMessageTextAC> |
+    ReturnType<typeof addMessageAC>
 
-export const dialogsReducer = (state: DialogsDataType, action: AllActions) => {
+export type InitialStateDialogsDataType = typeof initialState
+
+const initialState = {
+    users: [
+        {id: 1, name: 'Yury'},
+        {id: 2, name: 'Sergey'},
+        {id: 3, name: 'Sasha'}
+    ],
+    messages: [
+        {id: 1, message: 'Hello'},
+        {id: 2, message: 'Hi'},
+        {id: 3, message: 'Yo'}
+    ],
+    newMessageText: ''
+}
+
+export const dialogsReducer = (state: InitialStateDialogsDataType = initialState, action: DialogsReducerAC): InitialStateDialogsDataType => {
 
     switch (action.type) {
         case 'ADD-MESSAGE':

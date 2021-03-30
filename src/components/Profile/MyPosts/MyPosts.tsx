@@ -1,32 +1,32 @@
 import React, {ChangeEvent, KeyboardEvent} from 'react';
 import {Post} from './Post/Post';
 import s from './MyPosts.module.css';
-import {AllActionCreators} from '../../../redux/redux-store';
-import {addPostAC, InitialStateProfileReducerType, inputNewTextForPostAC} from '../../../redux/profileReducer';
+import {InitialStateProfileReducerType} from '../../../redux/profileReducer';
 
 type MyPostsPropsType = {
-    profileData: InitialStateProfileReducerType
-    dispatch: (action: AllActionCreators) => void
+    state: InitialStateProfileReducerType
+    newTextForPost: (text: string) => void
+    addPost: () => void
+    keyPress: () => void
 }
 
 export function MyPosts(props: MyPostsPropsType) {
 
     const onNewTextForPost = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch(inputNewTextForPostAC(e.currentTarget.value));
+        props.newTextForPost(e.currentTarget.value);
     };
     const onAddPost = () => {
-        props.dispatch(addPostAC());
+        props.addPost();
     };
     const onKeyPress = (e: KeyboardEvent<HTMLTextAreaElement>) => {
-        debugger
         if (e.ctrlKey && e.code === 'Enter') {
-            props.dispatch(addPostAC());
+            props.keyPress();
         }
     };
-    const mapProfileData = props.profileData.postsData.map(p => <Post key={p.id}
-                                                                      post={p.post}
-                                                                      like={p.like}
-                                                                      avatar={p.avatar}/>);
+    const mapProfileData = props.state.postsData.map(p => <Post key={p.id}
+                                                                post={p.post}
+                                                                like={p.like}
+                                                                avatar={p.avatar}/>);
 
     return (
         <div>
@@ -34,7 +34,7 @@ export function MyPosts(props: MyPostsPropsType) {
                 <h3>My posts</h3>
                 <div>
                 <textarea
-                    value={props.profileData.newTextForPost}
+                    value={props.state.newTextForPost}
                     onChange={onNewTextForPost}
                     onKeyPress={onKeyPress}/>
                 </div>

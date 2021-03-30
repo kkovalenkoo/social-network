@@ -2,10 +2,10 @@ import React from 'react';
 import './App.css';
 import {Navbar} from './components/Navbar/Navbar';
 import {Header} from './components/Header/Header';
-import {Dialogs} from './components/Dialogs/Dialogs';
 import {Profile} from './components/Profile/Profile';
 import {Route} from 'react-router-dom';
 import {AllActionCreators, AppStateType} from './redux/redux-store';
+import {DialogsContainer} from './components/Dialogs/DialogsContainer';
 
 type AppPropsType = {
     state: AppStateType
@@ -18,12 +18,13 @@ export function App(props: AppPropsType) {
             <Header/>
             <Navbar/>
             <div className='app-wrapper-content'>
-                <Route exact path='/profile' render={() => <Profile profileData={props.state.profileReducer}
+                <Route exact path='/profile' render={() => <Profile state={props.state.profileReducer}
                                                                     dispatch={props.dispatch}
-                                                                    />}
+                />}
                 />
-                <Route exact path='/dialogs' render={() => <Dialogs dialogsData={props.state.dialogsReducer}
-                                                                    dispatch={props.dispatch}/>}/>
+                <Route exact path='/dialogs' render={() => <DialogsContainer state={props.state.dialogsReducer}
+                                                                             dispatch={props.dispatch}
+                />}/>
             </div>
         </div>
     );

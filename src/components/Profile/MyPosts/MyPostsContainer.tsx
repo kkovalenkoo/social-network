@@ -1,25 +1,37 @@
 import React from 'react';
-import {AllActionCreators} from '../../../redux/redux-store';
+import {AppStateType} from '../../../redux/redux-store';
 import {addPostAC, InitialStateProfileReducerType, inputNewTextForPostAC} from '../../../redux/profileReducer';
 import {MyPosts} from './MyPosts';
+import {connect} from 'react-redux';
+import {Dispatch} from 'redux';
 
-type MyPostsPropsType = {
+type MapStateToPropsType = {
     state: InitialStateProfileReducerType
-    dispatch: (action: AllActionCreators) => void
 }
-
-export function MyPostsContainer(props: MyPostsPropsType) {
-
-    const newTextForPost = (text: string) => {
-        props.dispatch(inputNewTextForPostAC(text));
-    };
-    const addPost = () => {
-        props.dispatch(addPostAC());
-    };
-    const keyPress = () => {
-        props.dispatch(addPostAC());
-    };
-
-    return <MyPosts state={props.state} newTextForPost={newTextForPost} addPost={addPost} keyPress={keyPress}/>;
-
+type MapDispatchToPropsType = {
+    newTextForPost: (text: string) => void
+    addPost: () => void
+    keyPress: () => void
 }
+export type MapStateAndDispatchPropsType = MapStateToPropsType & MapDispatchToPropsType
+
+const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
+    return {
+        state: state.profileReducer
+    };
+};
+const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
+    return {
+        newTextForPost: (text: string) => {
+            dispatch(inputNewTextForPostAC(text));
+        },
+        addPost: () => {
+            dispatch(addPostAC());
+        },
+        keyPress: () => {
+            dispatch(addPostAC());
+        }
+    };
+};
+
+export const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts);

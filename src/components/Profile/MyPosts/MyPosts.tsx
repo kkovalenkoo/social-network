@@ -1,16 +1,10 @@
 import React, {ChangeEvent, KeyboardEvent} from 'react';
 import {Post} from './Post/Post';
 import s from './MyPosts.module.css';
-import {InitialStateProfileReducerType} from '../../../redux/profileReducer';
+import {MapStateAndDispatchPropsType} from './MyPostsContainer';
 
-type MyPostsPropsType = {
-    state: InitialStateProfileReducerType
-    newTextForPost: (text: string) => void
-    addPost: () => void
-    keyPress: () => void
-}
 
-export function MyPosts(props: MyPostsPropsType) {
+export function MyPosts(props: MapStateAndDispatchPropsType) {
 
     const onNewTextForPost = (e: ChangeEvent<HTMLTextAreaElement>) => {
         props.newTextForPost(e.currentTarget.value);

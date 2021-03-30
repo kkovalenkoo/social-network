@@ -1,24 +1,34 @@
-import {AllActionCreators} from '../../redux/redux-store';
 import {addMessageAC, InitialStateDialogsDataType, newMessageTextAC} from '../../redux/dialogsReducer';
 import {Dialogs} from './Dialogs';
+import {connect} from 'react-redux';
+import {Dispatch} from 'redux';
+import {AppStateType} from '../../redux/redux-store';
 
-type DialogsPropsType = {
+type MapStateToPropsType = {
     state: InitialStateDialogsDataType
-    dispatch: (action: AllActionCreators) => void
+}
+type MapDispatchToPropsType = {
+    changeTextMessage: (text: string) => void
+    sendClick: () => void
 }
 
-export function DialogsContainer(props: DialogsPropsType) {
+export type MapStateAndDispatchPropsType = MapStateToPropsType & MapDispatchToPropsType
 
-    const changeTextMessage = (text: string) => {
-        props.dispatch(newMessageTextAC(text));
+const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
+    return {
+        state: state.dialogsReducer
     };
-    const sendClick = () => {
-        props.dispatch(addMessageAC());
+};
+
+const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
+    return {
+        changeTextMessage: (text: string) => {
+            dispatch(newMessageTextAC(text));
+        },
+        sendClick: () => {
+            dispatch(addMessageAC());
+        }
     };
+};
 
-    return <Dialogs state={props.state}
-                    changeTextMessage={changeTextMessage}
-                    sendClick={sendClick}
-
-    />
-}
+export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);

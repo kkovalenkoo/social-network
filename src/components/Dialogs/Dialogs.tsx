@@ -2,15 +2,10 @@ import s from './Dialogs.module.css';
 import {Message} from './Message/Message';
 import {User} from './User/User';
 import {ChangeEvent} from 'react';
-import {InitialStateDialogsDataType} from '../../redux/dialogsReducer';
+import {MapStateAndDispatchPropsType} from './DialogsContainer';
 
-type DialogsPropsType = {
-    state: InitialStateDialogsDataType
-    changeTextMessage: (text: string) => void
-    sendClick: () => void
-}
 
-export function Dialogs(props: DialogsPropsType) {
+export function Dialogs(props: MapStateAndDispatchPropsType) {
 
     const mapUsers = props.state.users.map(d => <User key={d.id} id={d.id} name={d.name}/>)
     const mapMessages = props.state.messages.map(m => <Message key={m.id} message={m.message}/>)

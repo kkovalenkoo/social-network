@@ -18,20 +18,26 @@ const initialState = {
             like: 5
         }
     ],
-    newTextForPost: ''
-}
+    newText: ''
+};
 
 export const profileReducer = (state: InitialStateProfileReducerType = initialState, action: ProfileReducerAC): InitialStateProfileReducerType => {
 
     switch (action.type) {
-        case 'ADD-POST':
-            const newPost = {id: 3, avatar: '', post: state.newTextForPost, like: 0};
-            state.postsData.push(newPost);
-            state.newTextForPost = '';
-            return state;
-        case 'INPUT-NEW-TEXT-FOR-POST':
-            state.newTextForPost = action.newText;
-            return state;
+        case 'ADD-POST': {
+            const newPost = {id: 3, avatar: '', post: state.newText, like: 0};
+            return {
+                ...state,
+                postsData: [...state.postsData, newPost],
+                newText: ''
+            };
+        }
+        case 'INPUT-NEW-TEXT-FOR-POST': {
+            return {
+                ...state,
+                newText: action.newText
+            };
+        }
         default:
             return state;
     }

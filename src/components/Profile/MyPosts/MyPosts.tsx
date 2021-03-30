@@ -28,7 +28,7 @@ export function MyPosts(props: MapStateAndDispatchPropsType) {
                 <h3>My posts</h3>
                 <div>
                 <textarea
-                    value={props.state.newTextForPost}
+                    value={props.state.newText}
                     onChange={onNewTextForPost}
                     onKeyPress={onKeyPress}/>
                 </div>

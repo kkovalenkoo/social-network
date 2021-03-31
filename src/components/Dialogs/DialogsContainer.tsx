@@ -2,7 +2,7 @@ import {addMessageAC, InitialStateDialogsDataType, newMessageTextAC} from '../..
 import {Dialogs} from './Dialogs';
 import {connect} from 'react-redux';
 import {Dispatch} from 'redux';
-import {AppStateType} from '../../redux/redux-store';
+import {AllStateType} from '../../redux/redux-store';
 
 type MapStateToPropsType = {
     state: InitialStateDialogsDataType
@@ -14,7 +14,7 @@ type MapDispatchToPropsType = {
 
 export type MapStateAndDispatchPropsType = MapStateToPropsType & MapDispatchToPropsType
 
-const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
+const mapStateToProps = (state: AllStateType): MapStateToPropsType => {
     return {
         state: state.dialogsReducer
     };

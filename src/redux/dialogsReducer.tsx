@@ -4,7 +4,7 @@ export type DialogsReducerAC = ReturnType<typeof newMessageTextAC> |
 export type InitialStateDialogsDataType = typeof initialState
 
 const initialState = {
-    users: [
+    messageAuthor: [
         {id: 1, name: 'Yury'},
         {id: 2, name: 'Sergey'},
         {id: 3, name: 'Sasha'}

@@ -1,13 +1,13 @@
 import s from './Dialogs.module.css';
 import {Message} from './Message/Message';
-import {User} from './User/User';
+import {MessageAuthor} from './MessageAuthor/MessageAuthor';
 import {ChangeEvent} from 'react';
 import {MapStateAndDispatchPropsType} from './DialogsContainer';
 
 
 export function Dialogs(props: MapStateAndDispatchPropsType) {
 
-    const mapUsers = props.state.users.map(d => <User key={d.id} id={d.id} name={d.name}/>)
+    const mapUsers = props.state.messageAuthor.map(d => <MessageAuthor key={d.id} id={d.id} name={d.name}/>)
     const mapMessages = props.state.messages.map(m => <Message key={m.id} message={m.message}/>)
 
     const onChangeTextMessage = (e: ChangeEvent<HTMLTextAreaElement>) => {

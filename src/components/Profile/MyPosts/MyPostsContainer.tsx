@@ -1,5 +1,5 @@
 import React from 'react';
-import {AppStateType} from '../../../redux/redux-store';
+import {AllStateType} from '../../../redux/redux-store';
 import {addPostAC, InitialStateProfileReducerType, inputNewTextForPostAC} from '../../../redux/profileReducer';
 import {MyPosts} from './MyPosts';
 import {connect} from 'react-redux';
@@ -15,7 +15,7 @@ type MapDispatchToPropsType = {
 }
 export type MapStateAndDispatchPropsType = MapStateToPropsType & MapDispatchToPropsType
 
-const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
+const mapStateToProps = (state: AllStateType): MapStateToPropsType => {
     return {
         state: state.profileReducer
     };

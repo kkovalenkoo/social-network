@@ -5,7 +5,7 @@ type UserPropsType = {
     name: string
 }
 
-export function User(props: UserPropsType) {
+export function MessageAuthor(props: UserPropsType) {
     return (
         <div>
             <NavLink to={`/dialogs/1 ${props.id}`}>{props.name}</NavLink>

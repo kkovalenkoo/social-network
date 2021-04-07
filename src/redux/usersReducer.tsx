@@ -2,13 +2,17 @@ export type UserReducerAC =
     ReturnType<typeof FollowAC>
     | ReturnType<typeof UnfollowAC>
     | ReturnType<typeof SetUsersAC>
+type PhotoType = {
+    small: string
+    large: string
+}
 export type UserType = {
+    name: string
     id: number
-    avatar: string
+    uniqueUrlName: null
+    photos: PhotoType
+    status: null
     followed: boolean
-    fullName: string
-    status: string
-    location: {city: string, country: string}
 }
 
 export type InitialStateUsersReducerType = typeof initialState

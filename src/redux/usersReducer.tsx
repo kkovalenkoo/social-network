@@ -4,6 +4,7 @@ export type UserReducerAC =
     | ReturnType<typeof setUsersAC>
     | ReturnType<typeof setCurrentPageAC>
     | ReturnType<typeof setTotalUsersCountAC>
+    | ReturnType<typeof toggleIsFetchingAC>
 type PhotoType = {
     small: string
     large: string
@@ -23,7 +24,8 @@ const initialState = {
     users: [] as Array<UserType>,
     pageSize: 20,
     totalUsersCount: 0,
-    currentPage: 2
+    currentPage: 2,
+    isFetching: false
 };
 
 export const usersReducer = (state: InitialStateUsersReducerType = initialState, action: UserReducerAC): InitialStateUsersReducerType => {
@@ -69,6 +71,12 @@ export const usersReducer = (state: InitialStateUsersReducerType = initialState,
                 totalUsersCount: action.count
             }
         }
+        case 'TOGGLE-IS-FETCHING': {
+            return {
+                ...state,
+                isFetching: action.isFetching
+            }
+        }
         default:
             return state;
     }
@@ -91,3 +99,4 @@ export const setCurrentPageAC = (currentPage: number) => ({
     currentPage
 } as const);
 export const setTotalUsersCountAC = (count: number) => ({type: 'SET-TOTAL-USERS-COUNT', count} as const)
+export const toggleIsFetchingAC = (isFetching: boolean) => ({type: 'TOGGLE-IS-FETCHING', isFetching} as const)

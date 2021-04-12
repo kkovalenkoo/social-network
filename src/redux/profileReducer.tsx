@@ -1,7 +1,30 @@
-export type ProfileReducerAC = ReturnType<typeof addPostAC> |
-    ReturnType<typeof inputNewTextForPostAC>
+export type ProfileReducerAC =
+    ReturnType<typeof addPostAC>
+    | ReturnType<typeof inputNewTextForPostAC>
+    | ReturnType<typeof setUserProfile>
 
 export type InitialStateProfileReducerType = typeof initialState
+export type ProfileType = {
+    aboutMe: string
+    contacts: {
+        facebook: string
+        website: string
+        vk: string
+        twitter: string
+        instagram: string
+        youtube: string
+        github: string
+        mainLink: string
+    }
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName: string
+    userId: number
+    photos: {
+        small: string
+        large: string
+    }
+}
 
 const initialState = {
     postsData: [
@@ -18,7 +41,8 @@ const initialState = {
             like: 5
         }
     ],
-    newText: ''
+    newText: '',
+    profile: null as ProfileType | null
 };
 
 export const profileReducer = (state: InitialStateProfileReducerType = initialState, action: ProfileReducerAC): InitialStateProfileReducerType => {
@@ -38,6 +62,12 @@ export const profileReducer = (state: InitialStateProfileReducerType = initialSt
                 newText: action.newText
             };
         }
+        case 'SET-USER-PROFILE': {
+            return {
+                ...state,
+                profile: action.profile
+            }
+        }
         default:
             return state;
     }
@@ -50,3 +80,7 @@ export const inputNewTextForPostAC = (newText: string) => ({
     type: 'INPUT-NEW-TEXT-FOR-POST',
     newText: newText
 } as const);
+export const setUserProfile = (profile: ProfileType | null) => ({
+    type: 'SET-USER-PROFILE',
+    profile
+} as const)

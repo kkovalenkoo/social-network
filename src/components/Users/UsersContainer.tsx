@@ -15,7 +15,7 @@ import axios from 'axios';
 import {Users} from './Users';
 import {Preloader} from '../commonComponents/Preloader';
 
-export class UsersAPIComponent extends React.Component<MapStateAndDispatchPropsType> {
+export class UsersContainer extends React.Component<MapStateAndDispatchPropsType> {
 
     componentDidMount() {
         this.props.toggleIsFetching(true);
@@ -95,6 +95,6 @@ const mapStateToProps = (state: AllStateType): MapStateToPropsType => {
     };
 };*/
 
-export const UsersContainer = connect(
+export default connect(
     mapStateToProps,
-    {follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching})(UsersAPIComponent);
+    {follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching})(UsersContainer);

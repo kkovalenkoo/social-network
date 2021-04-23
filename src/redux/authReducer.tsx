@@ -19,7 +19,6 @@ export const authReducer = (state = initialState, action: AuthReducerAC): Initia
 
     switch (action.type) {
         case 'SET-USER-DATA': {
-            debugger
             return {
                 ...state,
                 login: action.data,

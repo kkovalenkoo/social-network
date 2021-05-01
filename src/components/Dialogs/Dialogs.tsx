@@ -1,8 +1,9 @@
 import s from './Dialogs.module.css';
 import {Message} from './Message/Message';
 import {MessageAuthor} from './MessageAuthor/MessageAuthor';
-import {ChangeEvent} from 'react';
+import React, {ChangeEvent} from 'react';
 import {MapStateAndDispatchPropsType} from './DialogsContainer';
+import { Redirect } from 'react-router-dom';
 
 
 export function Dialogs(props: MapStateAndDispatchPropsType) {
@@ -16,6 +17,8 @@ export function Dialogs(props: MapStateAndDispatchPropsType) {
     const onSendClick = () => {
         props.sendClick()
     }
+
+    if (!props.auth.isAuth) return <Redirect to={'/login'}/>
 
     return (
         <div className={s.dialogs}>

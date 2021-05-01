@@ -3,9 +3,11 @@ import {Dialogs} from './Dialogs';
 import {connect} from 'react-redux';
 import {Dispatch} from 'redux';
 import {AllStateType} from '../../redux/redux-store';
+import {InitialStateAuthReducerType} from '../../redux/authReducer';
 
 type MapStateToPropsType = {
     state: InitialStateDialogsDataType
+    auth: InitialStateAuthReducerType
 }
 type MapDispatchToPropsType = {
     changeTextMessage: (text: string) => void
@@ -16,7 +18,8 @@ export type MapStateAndDispatchPropsType = MapStateToPropsType & MapDispatchToPr
 
 const mapStateToProps = (state: AllStateType): MapStateToPropsType => {
     return {
-        state: state.dialogsReducer
+        state: state.dialogsReducer,
+        auth: state.authReducer
     };
 };
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ComponentType} from 'react';
 import {connect} from 'react-redux';
 import {AllStateType} from '../../redux/redux-store';
 import {
@@ -12,6 +12,8 @@ import {
 } from '../../redux/usersReducer';
 import {Users} from './Users';
 import {Preloader} from '../commonComponents/Preloader';
+import {compose} from 'redux';
+import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 
 export class UsersContainer extends React.Component<MapStateAndDispatchPropsType> {
     componentDidMount() {
@@ -82,9 +84,12 @@ const mapStateToProps = (state: AllStateType): MapStateToPropsType => {
     };
 };*/
 
-export default connect(
-    mapStateToProps,
-    {
-        follow, unfollow, followSuccess, unfollowSuccess,
-        setCurrentPage, toggleFollowingProgress, getUsers
-    })(UsersContainer);
+export default compose<ComponentType>(
+    connect(
+        mapStateToProps,
+        {
+            follow, unfollow, followSuccess, unfollowSuccess,
+            setCurrentPage, toggleFollowingProgress, getUsers
+        }),
+    withAuthRedirect
+)(UsersContainer);

@@ -4,25 +4,25 @@ import {connect} from 'react-redux';
 import {Dispatch} from 'redux';
 import {AllStateType} from '../../redux/redux-store';
 import {InitialStateAuthReducerType} from '../../redux/authReducer';
+import {Redirect} from 'react-router-dom';
+import React from 'react';
+import {ProfileAPIComponent} from '../Profile/ProfileContainer';
+import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 
 type MapStateToPropsType = {
     state: InitialStateDialogsDataType
-    auth: InitialStateAuthReducerType
 }
 type MapDispatchToPropsType = {
     changeTextMessage: (text: string) => void
     sendClick: () => void
 }
-
 export type MapStateAndDispatchPropsType = MapStateToPropsType & MapDispatchToPropsType
 
 const mapStateToProps = (state: AllStateType): MapStateToPropsType => {
     return {
         state: state.dialogsReducer,
-        auth: state.authReducer
     };
 };
-
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     return {
         changeTextMessage: (text: string) => {
@@ -34,4 +34,6 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     };
 };
 
-export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
+const AuthRedirectComponent = withAuthRedirect(Dialogs)
+
+export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent);

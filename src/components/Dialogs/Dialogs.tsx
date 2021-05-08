@@ -3,22 +3,19 @@ import {Message} from './Message/Message';
 import {MessageAuthor} from './MessageAuthor/MessageAuthor';
 import React, {ChangeEvent} from 'react';
 import {MapStateAndDispatchPropsType} from './DialogsContainer';
-import { Redirect } from 'react-router-dom';
 
 
 export function Dialogs(props: MapStateAndDispatchPropsType) {
 
-    const mapUsers = props.state.messageAuthor.map(d => <MessageAuthor key={d.id} id={d.id} name={d.name}/>)
-    const mapMessages = props.state.messages.map(m => <Message key={m.id} message={m.message}/>)
+    const mapUsers = props.state.messageAuthor.map(d => <MessageAuthor key={d.id} id={d.id} name={d.name}/>);
+    const mapMessages = props.state.messages.map(m => <Message key={m.id} message={m.message}/>);
 
     const onChangeTextMessage = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.changeTextMessage(e.currentTarget.value)
-    }
+        props.changeTextMessage(e.currentTarget.value);
+    };
     const onSendClick = () => {
-        props.sendClick()
-    }
-
-    if (!props.auth.isAuth) return <Redirect to={'/login'}/>
+        props.sendClick();
+    };
 
     return (
         <div className={s.dialogs}>

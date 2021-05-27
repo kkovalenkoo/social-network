@@ -4,6 +4,8 @@ import {MessageAuthor} from './MessageAuthor/MessageAuthor';
 import React from 'react';
 import {MapStateAndDispatchPropsType} from './DialogsContainer';
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
+import {Textarea} from "../commonComponents/ImprovisedForm/ImprovisedForm";
+import {maxLengthCreator, requiredField} from "../../utils/validators/validators";
 
 
 export function Dialogs(props: MapStateAndDispatchPropsType) {
@@ -22,7 +24,7 @@ export function Dialogs(props: MapStateAndDispatchPropsType) {
             </div>
             <div className={s.messages}>
                 {mapMessages}
-                <AddMessageReduxForm onSubmit={addNewMessage} />
+                <AddMessageReduxForm onSubmit={addNewMessage}/>
             </div>
 
         </div>
@@ -33,12 +35,17 @@ type FormDataType = {
     newMessageText: string
 }
 
+const maxLength10 = maxLengthCreator(10)
+
 function AddMessageForm(props: InjectedFormProps<FormDataType>) {
 
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field component={'textarea'} name={'newMessageText'} placeholder={'Enter your message'}/>
+                <Field component={Textarea}
+                       validate={[requiredField, maxLength10]}
+                       name={'newMessageText'}
+                       placeholder={'Enter your message'}/>
             </div>
             <div>
                 <button>Send</button>

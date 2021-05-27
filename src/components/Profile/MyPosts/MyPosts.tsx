@@ -3,7 +3,8 @@ import {Post} from './Post/Post';
 import s from './MyPosts.module.css';
 import {MapStateAndDispatchPropsType} from './MyPostsContainer';
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
-
+import {maxLengthCreator, requiredField} from "../../../utils/validators/validators";
+import {Textarea} from "../../commonComponents/ImprovisedForm/ImprovisedForm";
 
 export function MyPosts(props: MapStateAndDispatchPropsType) {
 
@@ -32,10 +33,15 @@ type FormDataType = {
     newPostText: string
 }
 
+const maxLength = maxLengthCreator(5)
+
 function AddNewPostForm(props:InjectedFormProps<FormDataType>) {
     return (
         <form onSubmit={props.handleSubmit}>
-            <Field component={'textarea'} name={'newPostText'} placeholder={'Enter new post'}/>
+            <Field component={Textarea}
+                   name={'newPostText'}
+                   placeholder={'Enter new post'}
+                   validate={[requiredField, maxLength]}/>
             <div>
                 <button>Add Post</button>
             </div>

@@ -1,0 +1,8 @@
+.improveFrom.error input,
+.improveFrom.error textarea {
+    border: 3px solid red;
+}
+
+.improveFrom.error span {
+    color: #890b0b;
+}

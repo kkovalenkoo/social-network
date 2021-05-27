@@ -1,4 +1,4 @@
-import {addMessageAC, InitialStateDialogsDataType, newMessageTextAC} from '../../redux/dialogsReducer';
+import {addMessageAC, InitialStateDialogsDataType} from '../../redux/dialogsReducer';
 import {Dialogs} from './Dialogs';
 import {connect} from 'react-redux';
 import {compose, Dispatch} from 'redux';
@@ -10,8 +10,7 @@ type MapStateToPropsType = {
     state: InitialStateDialogsDataType
 }
 type MapDispatchToPropsType = {
-    changeTextMessage: (text: string) => void
-    sendClick: () => void
+    sendMessage: (newMessageText: string) => void
 }
 export type MapStateAndDispatchPropsType = MapStateToPropsType & MapDispatchToPropsType
 
@@ -22,11 +21,8 @@ const mapStateToProps = (state: AllStateType): MapStateToPropsType => {
 };
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     return {
-        changeTextMessage: (text: string) => {
-            dispatch(newMessageTextAC(text));
-        },
-        sendClick: () => {
-            dispatch(addMessageAC());
+        sendMessage: (newMessageText: string) => {
+            dispatch(addMessageAC(newMessageText));
         }
     };
 };

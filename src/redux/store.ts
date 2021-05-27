@@ -1,5 +1,5 @@
-import {addPostAC, inputNewTextForPostAC, profileReducer} from './profileReducer';
-import {addMessageAC, dialogsReducer, newMessageTextAC} from './dialogsReducer';
+import {} from './profileReducer';
+//import {addMessageAC, dialogsReducer, newMessageTextAC} from './dialogsReducer';
 
 /*
 type UserType = {

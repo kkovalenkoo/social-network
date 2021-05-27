@@ -3,7 +3,6 @@ import {profileAPI, usersAPI} from '../api/api';
 
 export type ProfileReducerAC =
     ReturnType<typeof addPostAC>
-    | ReturnType<typeof inputNewTextForPostAC>
     | ReturnType<typeof setUserProfile>
     | ReturnType<typeof setStatus>
 
@@ -45,7 +44,6 @@ const initialState = {
             like: 5
         }
     ],
-    newText: '',
     profile: null as ProfileType | null,
     status: ''
 };
@@ -54,17 +52,10 @@ export const profileReducer = (state: InitialStateProfileReducerType = initialSt
 
     switch (action.type) {
         case 'ADD-POST': {
-            const newPost = {id: 3, avatar: '', post: state.newText, like: 0};
+            const newPost = {id: 3, avatar: '', post: action.newPostText, like: 0};
             return {
                 ...state,
                 postsData: [...state.postsData, newPost],
-                newText: ''
-            };
-        }
-        case 'INPUT-NEW-TEXT-FOR-POST': {
-            return {
-                ...state,
-                newText: action.newText
             };
         }
         case 'SET-USER-PROFILE': {
@@ -84,12 +75,8 @@ export const profileReducer = (state: InitialStateProfileReducerType = initialSt
     }
 };
 
-export const addPostAC = () => ({
-    type: 'ADD-POST'
-} as const);
-export const inputNewTextForPostAC = (newText: string) => ({
-    type: 'INPUT-NEW-TEXT-FOR-POST',
-    newText: newText
+export const addPostAC = (newPostText: string) => ({
+    type: 'ADD-POST', newPostText
 } as const);
 export const setUserProfile = (profile: ProfileType | null) => ({
     type: 'SET-USER-PROFILE',

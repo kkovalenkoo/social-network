@@ -1,5 +1,4 @@
-export type DialogsReducerAC = ReturnType<typeof newMessageTextAC> |
-    ReturnType<typeof addMessageAC>
+export type DialogsReducerAC = ReturnType<typeof addMessageAC>
 
 export type InitialStateDialogsDataType = typeof initialState
 
@@ -14,24 +13,16 @@ const initialState = {
         {id: 2, message: 'Hi'},
         {id: 3, message: 'Yo'}
     ],
-    newMessageText: ''
 };
 
 export const dialogsReducer = (state: InitialStateDialogsDataType = initialState, action: DialogsReducerAC): InitialStateDialogsDataType => {
 
     switch (action.type) {
         case 'ADD-MESSAGE': {
-            const newMessage = state.newMessageText;
+            const newMessage = action.newMessageText;
             return {
                 ...state,
-                newMessageText: '',
                 messages: [...state.messages, {id: 4, message: newMessage}]
-            };
-        }
-        case 'NEW-MESSAGE-TEXT': {
-            return {
-                ...state,
-                newMessageText: action.newMessage
             };
         }
         default:
@@ -39,10 +30,6 @@ export const dialogsReducer = (state: InitialStateDialogsDataType = initialState
     }
 };
 
-export const addMessageAC = () => ({
-    type: 'ADD-MESSAGE'
-} as const);
-export const newMessageTextAC = (newMessage: string) => ({
-    type: 'NEW-MESSAGE-TEXT',
-    newMessage: newMessage
+export const addMessageAC = (newMessageText: string) => ({
+    type: 'ADD-MESSAGE', newMessageText
 } as const);

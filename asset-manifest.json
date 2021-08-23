@@ -1,23 +1,22 @@
 {
   "files": {
-    "main.css": "/social-network-2.0/static/css/main.8c8b27cf.chunk.css",
-    "main.js": "/social-network-2.0/static/js/main.9cca3443.chunk.js",
-    "main.js.map": "/social-network-2.0/static/js/main.9cca3443.chunk.js.map",
-    "runtime-main.js": "/social-network-2.0/static/js/runtime-main.e0680693.js",
-    "runtime-main.js.map": "/social-network-2.0/static/js/runtime-main.e0680693.js.map",
-    "static/js/2.ac86b29f.chunk.js": "/social-network-2.0/static/js/2.ac86b29f.chunk.js",
-    "static/js/2.ac86b29f.chunk.js.map": "/social-network-2.0/static/js/2.ac86b29f.chunk.js.map",
-    "static/js/3.ede0db99.chunk.js": "/social-network-2.0/static/js/3.ede0db99.chunk.js",
-    "static/js/3.ede0db99.chunk.js.map": "/social-network-2.0/static/js/3.ede0db99.chunk.js.map",
+    "main.css": "/social-network-2.0/static/css/main.e229d198.chunk.css",
+    "main.js": "/social-network-2.0/static/js/main.ac11f360.chunk.js",
+    "main.js.map": "/social-network-2.0/static/js/main.ac11f360.chunk.js.map",
+    "runtime-main.js": "/social-network-2.0/static/js/runtime-main.2ab24960.js",
+    "runtime-main.js.map": "/social-network-2.0/static/js/runtime-main.2ab24960.js.map",
+    "static/js/2.1d4e22e0.chunk.js": "/social-network-2.0/static/js/2.1d4e22e0.chunk.js",
+    "static/js/2.1d4e22e0.chunk.js.map": "/social-network-2.0/static/js/2.1d4e22e0.chunk.js.map",
     "index.html": "/social-network-2.0/index.html",
-    "static/css/main.8c8b27cf.chunk.css.map": "/social-network-2.0/static/css/main.8c8b27cf.chunk.css.map",
-    "static/js/2.ac86b29f.chunk.js.LICENSE.txt": "/social-network-2.0/static/js/2.ac86b29f.chunk.js.LICENSE.txt",
-    "static/media/logo.6ce24c58.svg": "/social-network-2.0/static/media/logo.6ce24c58.svg"
+    "static/css/main.e229d198.chunk.css.map": "/social-network-2.0/static/css/main.e229d198.chunk.css.map",
+    "static/js/2.1d4e22e0.chunk.js.LICENSE.txt": "/social-network-2.0/static/js/2.1d4e22e0.chunk.js.LICENSE.txt",
+    "static/media/Spinner.9471d726.svg": "/social-network-2.0/static/media/Spinner.9471d726.svg",
+    "static/media/userPhoto.22c31152.png": "/social-network-2.0/static/media/userPhoto.22c31152.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.e0680693.js",
-    "static/js/2.ac86b29f.chunk.js",
-    "static/css/main.8c8b27cf.chunk.css",
-    "static/js/main.9cca3443.chunk.js"
+    "static/js/runtime-main.2ab24960.js",
+    "static/js/2.1d4e22e0.chunk.js",
+    "static/css/main.e229d198.chunk.css",
+    "static/js/main.ac11f360.chunk.js"
   ]
 }

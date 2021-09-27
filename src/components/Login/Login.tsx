@@ -1,11 +1,12 @@
-import {Field, InjectedFormProps, reduxForm} from "redux-form";
-import React from "react";
-import {Input} from "../commonComponents/ImprovisedForm/ImprovisedForm";
-import {requiredField} from "../../utils/validators/validators";
-import {connect} from "react-redux";
-import {InitialStateAuthReducerType, login} from "../../redux/authReducer";
-import {AllStateType} from "../../redux/redux-store";
-import {Redirect} from "react-router-dom";
+import {Field, InjectedFormProps, reduxForm} from 'redux-form'
+import React from 'react'
+import {Input} from '../commonComponents/ImprovisedForm/ImprovisedForm'
+import {requiredField} from '../../utils/validators/validators'
+import {connect} from 'react-redux'
+import {InitialStateAuthReducerType, login} from '../../redux/authReducer'
+import {AllStateType} from '../../redux/redux-store'
+import {Redirect} from 'react-router-dom'
+import style from './../commonComponents/ImprovisedForm/ImprovisedForm.module.css'
 
 type FormDataType = {
     email: string
@@ -13,7 +14,7 @@ type FormDataType = {
     rememberMe: boolean
 }
 
-const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
+function LoginForm(props: InjectedFormProps<FormDataType>) {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
@@ -26,6 +27,7 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
             <div>
                 <Field type="checkbox" name={'rememberMe'} component={Input}/> remember me
             </div>
+            {props.error && <div className={style.formSummaryError}>{props.error}</div>}
             <div>
                 <button>Login</button>
             </div>

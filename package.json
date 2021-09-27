@@ -2,7 +2,7 @@
   "name": "social-network-2.0",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://kkovalenkoo.github.io/social-network-2.0",
+  "homepage": "https://kkovalenkoo.github.io/social-network",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",

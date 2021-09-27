@@ -10,6 +10,8 @@ import {compose} from 'redux';
 type MapStateToPropsType = {
     profile: ProfileType | null
     status: string
+    isAuth: boolean
+    id: number | null
 }
 export type MapStateToPropsForRedirect = {
     auth: boolean
@@ -31,7 +33,7 @@ export class ProfileContainer extends React.Component<PropsType> {
     componentDidMount() {
         let userId = this.props.match.params.userId;
         if (!userId) {
-            userId = '13812';
+            userId = String(this.props.id);
         }
         this.props.getUserProfile(userId);
         this.props.getStatus(userId)
@@ -47,7 +49,9 @@ export class ProfileContainer extends React.Component<PropsType> {
 const mapStateToProps = (state: AllStateType): MapStateToPropsType => {
     return {
         profile: state.profileReducer.profile,
-        status: state.profileReducer.status
+        status: state.profileReducer.status,
+        isAuth: state.authReducer.isAuth,
+        id: state.authReducer.id
     };
 };
 

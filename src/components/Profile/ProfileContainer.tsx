@@ -6,6 +6,7 @@ import {AllStateType} from '../../redux/redux-store';
 import {RouteComponentProps, withRouter} from 'react-router';
 import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 import {compose} from 'redux';
+import {getId, getIsAuth, getProfile, getUserStatus} from '../../redux/profileSelectors'
 
 type MapStateToPropsType = {
     profile: ProfileType | null
@@ -34,6 +35,9 @@ export class ProfileContainer extends React.Component<PropsType> {
         let userId = this.props.match.params.userId;
         if (!userId) {
             userId = String(this.props.id);
+            if (!userId) {
+                this.props.history.push('/login')
+            }
         }
         this.props.getUserProfile(userId);
         this.props.getStatus(userId)
@@ -48,10 +52,10 @@ export class ProfileContainer extends React.Component<PropsType> {
 
 const mapStateToProps = (state: AllStateType): MapStateToPropsType => {
     return {
-        profile: state.profileReducer.profile,
-        status: state.profileReducer.status,
-        isAuth: state.authReducer.isAuth,
-        id: state.authReducer.id
+        profile: getProfile(state),
+        status: getUserStatus(state),
+        isAuth: getIsAuth(state),
+        id: getId(state)
     };
 };
 

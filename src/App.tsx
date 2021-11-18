@@ -1,7 +1,6 @@
 import React from 'react'
 import './App.css'
 import {Navbar} from './components/Navbar/Navbar'
-import {Route} from 'react-router-dom'
 import UsersContainer from './components/Users/UsersContainer'
 import ProfileContainer from './components/Profile/ProfileContainer'
 import HeaderContainer from './components/Header/HeaderContainer'
@@ -13,6 +12,7 @@ import {withRouter} from 'react-router'
 import {initializeApp} from './redux/appReducer'
 import {AllStateType} from './redux/redux-store'
 import {Preloader} from './components/commonComponents/Preloader'
+import { Route } from 'react-router-dom'
 
 
 class App extends React.Component<mapStateAndDispatchToProps> {
@@ -34,6 +34,7 @@ class App extends React.Component<mapStateAndDispatchToProps> {
                     <Route exact path="/dialogs" render={() => <DialogsContainer/>}/>
                     <Route exact path="/users" render={() => <UsersContainer/>}/>
                     <Route exact path="/login" render={() => <Login/>}/>
+
                 </div>
             </div>
         )

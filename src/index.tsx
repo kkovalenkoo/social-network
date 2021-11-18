@@ -12,7 +12,7 @@ ReactDOM.render(
             <App/>
         </Provider>
     </HashRouter>
-    , document.getElementById('root'))
+    ,document.getElementById('root'))
 
 
 

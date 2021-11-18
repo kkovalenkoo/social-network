@@ -52,6 +52,8 @@ const Login = (props: mapDispatchToProps & mapStateToProps) => {
     return (
         <div>
             <h1>LOGIN</h1>
+            <h3>Email для входа: free@samuraijs.com</h3>
+            <h3>Пароль для входа: free</h3>
             <LoginReduxForm onSubmit={onSubmit}/>
         </div>
     )

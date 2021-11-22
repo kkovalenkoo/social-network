@@ -11,7 +11,7 @@ import {compose} from 'redux'
 import {withRouter} from 'react-router'
 import {initializeApp} from './redux/appReducer'
 import {AllStateType} from './redux/redux-store'
-import {Preloader} from './components/commonComponents/Preloader'
+import {Preloader} from './components/commonComponents/Preloader/Preloader'
 import { Route } from 'react-router-dom'
 
 

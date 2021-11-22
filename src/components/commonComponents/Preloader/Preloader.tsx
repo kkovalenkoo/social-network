@@ -1,4 +1,4 @@
-import preloader from '../../loader/Spinner.svg';
+import preloader from '../../../loader/Spinner.svg';
 import React from 'react';
 
 export function Preloader() {

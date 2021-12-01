@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Suspense} from 'react'
 import './App.css'
 import {Navbar} from './components/Navbar/Navbar'
 import UsersContainer from './components/Users/UsersContainer'
@@ -11,7 +11,6 @@ import {initializeApp} from './redux/appReducer'
 import {AllStateType} from './redux/redux-store'
 import {Preloader} from './components/commonComponents/Preloader/Preloader'
 import {Route} from 'react-router-dom'
-import {withSuspense} from './hoc/withSuspense'
 
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'))
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'))
@@ -32,8 +31,10 @@ class App extends React.Component<mapStateAndDispatchToProps> {
                 <HeaderContainer/>
                 <Navbar/>
                 <div className="app-wrapper-content">
-                    <Route path="/profile/:userId?" render={withSuspense(ProfileContainer)}/>
-                    <Route exact path="/dialogs" render={withSuspense(DialogsContainer)}/>
+                    <Suspense fallback={<div>Loading</div>}>
+                        <Route path="/profile/:userId?" render={() => <ProfileContainer/>}/>
+                        <Route exact path="/dialogs" render={() => <DialogsContainer/>}/>
+                    </Suspense>
                     <Route exact path="/users" render={() => <UsersContainer/>}/>
                     <Route exact path="/login" render={() => <Login/>}/>
 

@@ -13,16 +13,18 @@ type ProfileInfoPropsType = {
 export function ProfileInfo(props: ProfileInfoPropsType) {
 
     if (!props.profile) {
-        return <Preloader/>;
+        return <Preloader/>
     }
     return (
         <div>
-            <img src="https://img.gazeta.ru/files3/173/6408173/1ca3f5-pic700-700x467-84454.jpg"/>
+            <img src="https://img.gazeta.ru/files3/173/6408173/1ca3f5-pic700-700x467-84454.jpg"
+                 alt="premier league logo"/>
             <div className={s.profileInfoBlock}>
-                <img src={props.profile.photos.large !== null ? props.profile.photos.large : ''}/>
+                <img src={props.profile.photos.large !== null ? props.profile.photos.large : ''}
+                     alt="default pic"/>
                 <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
             </div>
         </div>
-    );
+    )
 }
 

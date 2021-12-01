@@ -38,7 +38,7 @@ function LoginForm(props: InjectedFormProps<FormDataType>) {
 export const LoginReduxForm = reduxForm<FormDataType>({form: 'login'})(LoginForm)
 
 
-const Login = (props: mapDispatchToProps & mapStateToProps) => {
+const Login = (props: mapDispatchToProps & mapStateToPropsType) => {
 
     const onSubmit = (formData: FormDataType) => {
         const {email, password, rememberMe} = formData
@@ -62,11 +62,11 @@ const Login = (props: mapDispatchToProps & mapStateToProps) => {
 type mapDispatchToProps = {
     login: (email: string, password: string, rememberMe: boolean) => void
 }
-type mapStateToProps = {
+type mapStateToPropsType = {
     state: InitialStateAuthReducerType
 }
 
-const mapStateToProps = (state: AllStateType): mapStateToProps => ({
+const mapStateToProps = (state: AllStateType): mapStateToPropsType => ({
     state: state.authReducer
 })
 

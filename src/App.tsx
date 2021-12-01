@@ -49,10 +49,12 @@ type mapDispatchToPropsType = {
 }
 type mapStateAndDispatchToProps = mapStateToPropsType & mapDispatchToPropsType
 
-const mapStateToPropsType = (state: AllStateType): mapStateToPropsType => ({
+const mapStateToProps = (state: AllStateType): mapStateToPropsType => ({
     initialized: state.appReducer.initialized
 })
 
 export default compose<React.ComponentType>(
     withRouter,
-    connect(mapStateToPropsType, {initializeApp}))(App)
+    connect(mapStateToProps, {initializeApp}))(App)
+
+

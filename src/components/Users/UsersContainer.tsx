@@ -62,15 +62,12 @@ type MapDispatchToPropsType = {
 export type MapStateAndDispatchPropsType = MapStateToPropsType & MapDispatchToPropsType
 
 const mapStateToProps = (state: AllStateType): MapStateToPropsType => {
-    return {
-        state: state.usersReducer,
-    }
+    return {state: state.usersReducer}
 }
 
 export default compose<ComponentType>(
     connect(mapStateToProps, {
         follow, unfollow, followSuccess, unfollowSuccess,
-        setCurrentPage, toggleFollowingProgress, getUsers
-    }),
+        setCurrentPage, toggleFollowingProgress, getUsers}),
     withAuthRedirect
 )(UsersContainer)

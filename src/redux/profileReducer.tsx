@@ -17,7 +17,7 @@ const initialState = {
         }
     ],
     profile: null as ProfileType | null,
-    status: ''
+    status: '',
 }
 
 export const profileReducer = (state: InitialStateProfileReducerType = initialState, action: ProfileReducerAC): InitialStateProfileReducerType => {
@@ -31,6 +31,8 @@ export const profileReducer = (state: InitialStateProfileReducerType = initialSt
             return {...state, status: action.status}
         case 'DELETE-POST':
             return {...state, postsData: state.postsData.filter(p => p.id !== action.id)}
+        case 'SAVE-PHOTO-SUCCESS':
+            return {...state, profile: {...state.profile, photos: action.photo} as ProfileType}
         default:
             return state
     }
@@ -41,6 +43,7 @@ export const addPostAC = (newPostText: string) => ({type: 'ADD-POST', newPostTex
 export const setUserProfile = (profile: ProfileType | null) => ({type: 'SET-USER-PROFILE', profile} as const)
 export const setStatus = (status: string) => ({type: 'SET-STATUS', status} as const)
 export const deletePost = (id: number) => ({type: 'DELETE-POST', id} as const)
+export const savePhotoSuccess = (photo: any) => ({type: 'SAVE-PHOTO-SUCCESS', photo} as const)
 
 //Thunks
 export const getUserProfile = (userId: string) => async (dispatch: Dispatch) => {
@@ -57,6 +60,12 @@ export const updateStatus = (status: string) => async (dispatch: Dispatch) => {
         dispatch(setStatus(status))
     }
 }
+export const savePhoto = (photo: any) => async (dispatch: Dispatch) => {
+    const res = await profileAPI.savePhoto(photo)
+    if (res.data.resultCode === 0) {
+        dispatch(savePhotoSuccess(res.data.data.photos))
+    }
+}
 
 //Types
 export type ProfileReducerAC =
@@ -64,6 +73,7 @@ export type ProfileReducerAC =
     | ReturnType<typeof setUserProfile>
     | ReturnType<typeof setStatus>
     | ReturnType<typeof deletePost>
+    | ReturnType<typeof savePhotoSuccess>
 
 export type InitialStateProfileReducerType = typeof initialState
 export type ProfileType = {
